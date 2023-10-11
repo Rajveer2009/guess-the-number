@@ -6,6 +6,7 @@ const int MIN = 1;
 const int MAX = 100;
 
 int guess;
+int tries;
 int answer;
 int lastGuess;
 
@@ -34,15 +35,16 @@ int main()
 
     do
     {
-        char input[10]; // Buffer to store user input
+        char input[8]; // Buffer to store user input
 
         printf("Enter your guess (%d-%d): ", MIN, MAX);
         scanf("%s", input);
 
         // Check if the input is a valid integer
-        if (!isInteger(input))
+        if (!isInteger(input) || atoi(input) > MAX)
         {
             printf("Please enter a valid number between %d and %d.\n", MIN, MAX);
+            tries++;
             continue;
         }
 
@@ -51,16 +53,25 @@ int main()
         if (guess < answer)
         {
             printf("Guess higher!\n");
+            tries++;
         }
         else if (guess > answer)
         {
             printf("Guess lower!\n");
+            tries++;
         }
 
         lastGuess = guess;
     } while (guess != answer);
 
     printf("Congratulations! You guessed the correct number: %d\n", answer);
+
+    if (tries == 1) {
+        printf("You tried: %d time, and got it on the %d try\n", tries, tries + 1);
+    }
+    else {
+        printf("You tried: %d times, and got it on the %d try\n", tries, tries + 1);
+    }
 
     return 0;
 }
