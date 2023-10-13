@@ -2,20 +2,22 @@
 #include <stdlib.h>
 #include <time.h>
 
-const int MIN = 1;
-const int MAX = 100;
+const int MIN = 1;    // The minimum value for the guessing range
+const int MAX = 100;  // The maximum value for the guessing range
 
-int guess;
-int tries;
-int answer;
-int lastGuess;
+int guess;            // The user's current guess
+int tries;            // The number of attempts the user has made
+int answer;           // The randomly generated correct answer
+int lastGuess;        // The user's last guess
 
+// Function to generate a random number within a specified range
 int randomNumber(int lower, int upper)
 {
-    srand(time(0));
+    srand(time(0));  // Seed the random number generator with the current time
     return (rand() % (upper - lower + 1)) + lower;
 }
 
+// Function to check if a string input represents a valid integer
 int isInteger(char input[])
 {
     for (int i = 0; input[i] != '\0'; i++)
@@ -30,6 +32,7 @@ int isInteger(char input[])
 
 int main()
 {
+    // Generate a random number and initialize variables
     answer = randomNumber(MIN, MAX);
     printf("Welcome to the Number Guessing Game!\n");
 
@@ -64,6 +67,7 @@ int main()
         lastGuess = guess;
     } while (guess != answer);
 
+    // Display a congratulatory message and the number of tries
     printf("Congratulations! You guessed the correct number: %d\n", answer);
 
     if (tries == 1) {
