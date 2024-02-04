@@ -13,7 +13,7 @@ int lastGuess;        // The user's last guess
 // Function to generate a random number within a specified range
 int randomNumber(int lower, int upper)
 {
-    srand(time(0));  // Seed the random number generator with the current time
+    srand(time(0));   // Seed the random number generator with the current time
     return (rand() % (upper - lower + 1)) + lower;
 }
 
